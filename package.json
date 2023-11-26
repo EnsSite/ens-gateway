@@ -1,0 +1,17 @@
+{
+  "name": "ens-gateway",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@ensdomains/content-hash": "^3.0.0",
+    "content-hash": "^2.5.2",
+    "viem": "^1.19.9"
+  },
+  "license": "MIT"
+}
