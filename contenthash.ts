@@ -31,5 +31,5 @@ export const getContentHash = async (ens: string) => {
     return
   }
   const hash = decode(contenthash)
-  return `http://localhost:8080/ipfs/${hash}`
+  return `http://ipfs.ens.site/ipfs/${hash}`
 }
