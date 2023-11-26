@@ -25,6 +25,9 @@ export const getContentHash = async (ens: string) => {
     args: [node],
   })
 
+  if (contenthash === '0x') {
+    return
+  }
   const hash = decode(contenthash)
-  return `http://ipfs.ens.site/ipfs/${hash}`
+  return `http://localhost:8080/ipfs/${hash}`
 }
