@@ -5,6 +5,11 @@ import { parseAbi } from 'viem/abi'
 import { createPublicClient, http } from 'viem'
 import { mainnet } from 'viem/chains'
 
+if (!process.env.ALCHEMY_API_KEY) {
+  console.error('\nError: Missing ALCHEMY_API_KEY environment variable.\n')
+  process.exit(1)
+}
+
 const transport = http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
 
 const publicClient = createPublicClient({
