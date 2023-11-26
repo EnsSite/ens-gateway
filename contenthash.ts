@@ -5,8 +5,10 @@ import { parseAbi } from 'viem/abi'
 import { createPublicClient, http } from 'viem'
 import { mainnet } from 'viem/chains'
 
+const transport = http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
+
 const publicClient = createPublicClient({
-  transport: http(),
+  transport,
   chain: mainnet,
 })
 
