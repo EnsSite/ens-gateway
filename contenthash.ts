@@ -1,6 +1,6 @@
 import { decode } from '@ensdomains/content-hash'
 import { namehash, normalize } from 'viem/ens'
-import { parseAbi } from 'viem/abi'
+import { parseAbi } from 'viem'
 
 import { createPublicClient, http } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -18,6 +18,10 @@ const publicClient = createPublicClient({
 })
 
 
+const resolverAbi = parseAbi([
+  'function resolver(bytes32 node) external view returns (address)',
+])
+
 const abi = parseAbi([
   'function contenthash(bytes32 node) external view returns (bytes memory)',
 ])
@@ -25,10 +29,17 @@ const abi = parseAbi([
 export const getContentHash = async (ens: string) => {
   const node = namehash(normalize(ens))
 
+  const resolver = await publicClient.readContract({
+    abi: resolverAbi,
+    functionName: 'resolver',
+    address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+    args: [node],
+  })
+
   const contenthash = await publicClient.readContract({
     abi,
     functionName: 'contenthash',
-    address: '0x4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41',
+    address: resolver,
     args: [node],
   })
 

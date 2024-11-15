@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@ensdomains/content-hash": "^3.0.0",
-    "content-hash": "^2.5.2",
-    "viem": "^1.19.9"
+    "viem": "^2.21.45"
   },
   "license": "MIT"
 }
